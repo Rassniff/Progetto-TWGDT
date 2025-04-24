@@ -1,22 +1,14 @@
 const express = require('express');
-const fs = require('fs');
 const cors = require('cors');
 
 const app = express();
+const autoveloxRouter = require('./routes/autovelox'); // importa il router
+
 app.use(cors());
 app.use(express.json());
 
-const dataPath = './data/autovelox.json'; // path del mio file json
-
-// API base: lista risorse
-app.get('/api/risorse', (req, res) => {
-  try {
-    const data = JSON.parse(fs.readFileSync(dataPath));
-    res.json(data);
-  } catch (err) {
-    res.status(500).json({ error: 'Errore nella lettura dei dati' });
-  }
-});
+// Monta il router: tutte le rotte iniziano con /api/autovelox
+app.use('/api/autovelox', autoveloxRouter);
 
 const PORT = 3000;
 app.listen(PORT, () => {

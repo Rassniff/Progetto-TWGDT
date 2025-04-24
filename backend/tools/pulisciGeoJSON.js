@@ -3,7 +3,7 @@ const fs = require('fs');
 // Carica il file GeoJSON originale
 const geojson = JSON.parse(fs.readFileSync('./data/export.geojson', 'utf8'));
 
-// Estrai i dati in forma semplificata
+// Estrae i dati in forma semplificata
 const autovelox = geojson.features.map((feature, index) => {
   const [lon, lat] = feature.geometry.coordinates;
   const props = feature.properties || {};

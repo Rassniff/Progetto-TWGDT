@@ -1,0 +1,15 @@
+Backend
+    Aggiunta risorsa GeoJSON degli autovelox presenti in Italia
+    Tool di conversione del file GeoJSON in JSON andando a prendere solo i dati che ci interessano
+    Gestione lato server delle richieste API (GET, PUT, POST, DELETE)
+    Caricamento della risorsa API su server Express con Nodejs
+
+
+Frontend
+    Index --> Mappa degli Autovelox (Marker con descrizione degli autovelox) html/css con libreria Leaflet
+              Aggiunta degli autovelox alla mappa
+
+    *Pagina di get/put/post/delete
+    *Suddivisione per Regione/Province/Comuni
+
+*Sistema di conversione da indirizzo a coordinate(lat/lon) 

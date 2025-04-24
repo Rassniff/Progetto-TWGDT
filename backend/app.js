@@ -10,7 +10,10 @@ app.use(express.json());
 // Monta il router: tutte le rotte iniziano con /api/autovelox
 app.use('/api/autovelox', autoveloxRouter);
 
+app.use(express.static('../frontend'));
+
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server avviato su http://localhost:${PORT}`);
 });
+

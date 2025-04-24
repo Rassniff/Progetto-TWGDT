@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs');
+
 const router = express.Router();
 
 const filePath = './data/autovelox.json';

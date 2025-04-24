@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const dataPath = './data/dati.json'; // dopo lo creiamo
+const dataPath = './data/autovelox.json'; // dopo lo creiamo
 
 // API base: lista risorse
 app.get('/api/risorse', (req, res) => {

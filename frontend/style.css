@@ -1,12 +1,77 @@
+/* Imposta il body con margini azzerati e un font leggibile */
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-  }
-  
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Titolo centrato e con margine */
+h1 {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+/* Contenitore della mappa responsive */
+#map {
+  width: 90vw;     /* Larghezza: 90% della viewport */
+  height: 70vh;    /* Altezza: 70% della viewport */
+  max-width: 1200px; /* Limite massimo su schermi larghi */
+  border: 2px solid #444;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+/* Per schermi piccoli (es. telefoni) */
+@media (max-width: 600px) {
   #map {
-    height: 1000px;
-    width: 100%;
-    border: 2px solid #ccc;
-    margin-top: 20px;
+    width: 95vw;
+    height: 60vh;
   }
-  
+
+  h1 {
+    font-size: 1.2rem;
+  }
+}
+
+
+
+#search-bar {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 8px 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  display: flex;
+  gap: 8px;
+  z-index: 1000; /* Sopra la mappa */
+}
+
+#search-bar input {
+  border: none;
+  outline: none;
+  padding: 8px;
+  border-radius: 8px;
+  width: 200px;
+  font-size: 14px;
+}
+
+#search-bar button {
+  background: #0078ff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+#search-bar button:hover {
+  background: #005dc1;
+}

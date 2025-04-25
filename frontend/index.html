@@ -11,40 +11,21 @@
 </head>
 <body>
   <h1>Mappa degli Autovelox in Italia</h1>
-  <div id="map"></div>
-
+  <div id="map">
+    <div id="search-bar">
+      <input type="number" id="searchId" placeholder="Inserisci ID autovelox..." />
+      <button id="searchButton">🔍</button>
+    </div>
+  </div>
+  
+  <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
-  <script>
-    const map = L.map('map').setView([42.5, 12.5], 6); // Centro Italia
 
-    // Aggiunta del layer di OpenStreetMap
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
-
-    // Creazione di un nuovo cluster group
-    const markers = L.markerClusterGroup();
-
-    // Caricamento dei dati degli autovelox dal backend
-    fetch('/api/autovelox')
-      .then(res => res.json())
-      .then(data => {
-        // Aggiungi un marker per ogni autovelox sulla mappa
-        data.forEach(v => {
-          const marker = L.marker([v.lat, v.lon])
-            .bindPopup(`<b>Velocità max: ${v.maxspeed}km/h</b><br>ID: ${v.id}`); // Mostra la descrizione e ID quando clicchi sul marker
-
-            // Aggiunta del marker al cluster
-            markers.addLayer(marker);
-        });
-
-        //Aggiungo il cluster al layer della mappa
-        map.addLayer(markers);
-
-      })
-      .catch(err => console.error('Errore nel caricamento dei dati:', err));
-
-  </script>
+  <!-- I miei script -->
+  <script src="js/map.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/search.js"></script>
+  
 </body>
 </html>

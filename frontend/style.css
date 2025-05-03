@@ -1,77 +1,175 @@
-/* Imposta il body con margini azzerati e un font leggibile */
-body {
+/* Reset base */
+* {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
 }
 
-/* Titolo centrato e con margine */
+body {
+  background-color: #f8f9fa;
+  color: #333;
+  padding: 1rem;
+}
+
+/* Titolo */
 h1 {
   text-align: center;
-  margin: 1rem 0;
+  margin-bottom: 1rem;
+  color: #004080;
+  font-size: 2.2rem;
 }
 
-/* Contenitore della mappa responsive */
+/* Contenitore principale responsivo */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 2000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Affiancato su desktop */
+@media (min-width: 768px) {
+  .main-content {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .map-wrapper {
+    flex: 3; /* Più grande */
+  }
+
+  .list-wrapper {
+    flex: 1; /* Più stretta */
+  }
+}
+
+/* Mappa e Lista prendono metà spazio (o si adattano) 
+.map-wrapper,
+.list-wrapper {
+  flex: 1;
+  min-width: 0; /* Previene overflow */
+/*}*/
+
+/* Mappa */
 #map {
-  width: 90vw;     /* Larghezza: 90% della viewport */
-  height: 70vh;    /* Altezza: 70% della viewport */
-  max-width: 1200px; /* Limite massimo su schermi larghi */
-  border: 2px solid #444;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  height: 70vh;
+  width: 100%;
+  border: 2px solid #004080;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
 }
 
-/* Per schermi piccoli (es. telefoni) */
-@media (max-width: 600px) {
-  #map {
-    width: 95vw;
-    height: 60vh;
-  }
-
-  h1 {
-    font-size: 1.2rem;
-  }
-}
-
-
-
+/* Barra di ricerca */
 #search-bar {
   position: absolute;
-  top: 20px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  background: white;
+  background-color: rgba(255, 255, 255, 0.95);
   padding: 8px 12px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   display: flex;
-  gap: 8px;
-  z-index: 1000; /* Sopra la mappa */
+  gap: 6px;
+  z-index: 1000;
+  flex-wrap: wrap;
 }
 
 #search-bar input {
-  border: none;
-  outline: none;
-  padding: 8px;
-  border-radius: 8px;
-  width: 200px;
-  font-size: 14px;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+  min-width: 120px;
 }
 
 #search-bar button {
-  background: #0078ff;
+  background-color: #007bff;
   color: white;
   border: none;
-  padding: 8px 12px;
-  border-radius: 8px;
+  padding: 6px 12px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s;
 }
 
 #search-bar button:hover {
-  background: #005dc1;
+  background-color: #0056b3;
+}
+
+/* Lista autovelox */
+#autovelox-list {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  height: 70vh;
+  overflow-y: auto;
+}
+
+#autovelox-list h2 {
+  color: #004080;
+  margin-bottom: 1rem;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
+}
+
+/* Scrollbar personalizzata */
+#autovelox-list::-webkit-scrollbar {
+  width: 8px;
+}
+#autovelox-list::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+/* Singoli elementi */
+#autoveloxContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.autovelox-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #e9f0fa;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border-left: 4px solid #007bff;
+}
+
+.edit{
+  background-color: yellow;
+}
+
+.delete{
+  background-color: red;
+}
+
+/* Responsive per mobile */
+@media (max-width: 600px) {
+  #search-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #search-bar input,
+  #search-bar button {
+    width: 100%;
+  }
+
+  #map {
+    height: 50vh;
+  }
+
+  #autovelox-list {
+    height: auto;
+    max-height: 50vh;
+  }
 }

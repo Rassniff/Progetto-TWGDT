@@ -11,13 +11,24 @@
 </head>
 <body>
   <h1>Mappa degli Autovelox in Italia</h1>
-  <div id="map">
-    <div id="search-bar">
-      <input type="number" id="searchId" placeholder="Inserisci ID autovelox..." />
-      <button id="searchButton">🔍</button>
+  <div class="main-content">
+    <div class="map-wrapper">
+      <div id="map">
+        <div id="search-bar">
+          <input type="number" id="searchId" placeholder="Inserisci ID autovelox..." />
+          <button id="searchButton">🔍</button>
+        </div>
+      </div>
+    </div> 
+    
+    <div class="list-wrapper">
+      <div id="autovelox-list">
+        <h2>Lista autovelox</h2>
+        <div id="autoveloxContainer"></div>
+      </div>
     </div>
   </div>
-  
+
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
@@ -26,6 +37,7 @@
   <script src="js/map.js"></script>
   <script src="js/form.js"></script>
   <script src="js/search.js"></script>
+  <script src="js/crud.js"></script>
   
 </body>
 </html>

@@ -11,7 +11,7 @@ Frontend
                Aggiunta di una barra di ricerca dell'autovelox in base all'ID
                Aggiunta della lista degli autovelox -- integrazione eliminazione/modifica(velocità massima)
     
-    -Inserimento nuovo autovelox: ID|Latitudine:|Longitudine|Velocità massima:|
+    +Inserimento nuovo autovelox: id generato, lat e lon posizionando il marker sulla mappa, inserimento della velocità max
 
 
     *Pagina di get/put/post/delete
@@ -22,3 +22,4 @@ Frontend
 
 *Sistema di conversione da indirizzo a coordinate(lat/lon)
 *Barra di ricerca indirizzo(Città/Via) 
+*Aggiornamento dinamico della mappa dopo l'inserimento di un nuovo autovelox aggiornando anche i marker

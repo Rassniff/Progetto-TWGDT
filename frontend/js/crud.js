@@ -1,4 +1,4 @@
-//Carico la lista di tutti gli autovelox
+//Carica la lista di tutti gli autovelox
 function loadAutoveloxList() {
     fetch('/api/autovelox')
       .then(res => res.json())
@@ -27,8 +27,8 @@ function loadAutoveloxList() {
         attachActionHandlers();
       });
 }
-  
 
+//Gestione modifica/eliminazione degli autovelox
 function attachActionHandlers() {
     //Eliminazione autovelox
     document.querySelectorAll('.delete').forEach(btn => {
@@ -37,7 +37,8 @@ function attachActionHandlers() {
         if (confirm(`Vuoi davvero eliminare l'autovelox ID ${id}?`)) {
           fetch(`/api/autovelox/${id}`, { method: 'DELETE' })
             .then(() => {
-              loadAutoveloxList();
+              loadAutoveloxList(); //aggiorno la lista
+              loadAutoveloxData(); //aggiorno la mappa
               alert('Autovelox eliminato!');
             });
         }
@@ -56,7 +57,8 @@ function attachActionHandlers() {
           body: JSON.stringify({ maxspeed: parseInt(newSpeed) })
         })
         .then(() => {
-          loadAutoveloxList();
+          loadAutoveloxList(); //aggiorno la lista
+          loadAutoveloxData(); //aggiorno la mappa
           alert('Autovelox aggiornato!');
         });
       });

@@ -24,6 +24,22 @@
     <div class="list-wrapper">
       <div id="autovelox-list">
         <h2>Lista autovelox</h2>
+        <button id="addAutoveloxBtn">➕ Aggiungi autovelox</button>
+          <div id="autoveloxForm" class="hidden">
+            <form id="newAutoveloxForm">
+              <label>Latitudine:
+                <input type="number" name="lat" id="latInput" readonly>
+              </label>
+              <label>Longitudine:
+                <input type="number" name="lon" id="lonInput" readonly>
+              </label>
+              <label>Velocità max (km/h):
+                <input type="number" name="maxspeed" required>
+              </label>
+              <p style="font-size: 0.9rem; color: #666;">Clicca sulla mappa per selezionare la posizione.</p>
+              <button type="submit">Salva</button>
+            </form>
+          </div>
         <div id="autoveloxContainer"></div>
       </div>
     </div>

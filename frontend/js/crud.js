@@ -9,6 +9,7 @@ function loadAutoveloxList() {
         data.forEach(v => {
           const el = document.createElement('div');
           el.classList.add('autovelox-item');
+          el.setAttribute('data-id', v.id);
           el.innerHTML = `
             <div>
               <b>ID:</b> ${v.id} | 

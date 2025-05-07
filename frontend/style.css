@@ -45,12 +45,6 @@ h1 {
   }
 }
 
-/* Mappa e Lista prendono metà spazio (o si adattano) 
-.map-wrapper,
-.list-wrapper {
-  flex: 1;
-  min-width: 0; /* Previene overflow */
-/*}*/
 
 /* Mappa */
 #map {
@@ -62,23 +56,33 @@ h1 {
   position: relative;
 }
 
-/* Barra di ricerca */
-#search-bar {
+.map-search-wrapper {
   position: absolute;
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  z-index: 1000;
+}
+
+
+/* Barra di ricerca */
+#search-bar,
+#location-search-bar {
   background-color: rgba(255, 255, 255, 0.95);
   padding: 8px 12px;
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   display: flex;
   gap: 6px;
-  z-index: 1000;
   flex-wrap: wrap;
+  position: relative;
 }
 
-#search-bar input {
+#search-bar input,
+#location-search-bar input {
   padding: 6px 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -86,7 +90,8 @@ h1 {
   min-width: 120px;
 }
 
-#search-bar button {
+#search-bar button,
+#location-search-bar button {
   background-color: #007bff;
   color: white;
   border: none;
@@ -95,11 +100,43 @@ h1 {
   cursor: pointer;
 }
 
-#search-bar button:hover {
+#search-bar button:hover,
+#location-search-bar button:hover {
   background-color: #0056b3;
 }
 
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 180px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1100;
+}
+
+.suggestion-item {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
 /* Lista autovelox */
+.autovelox-item.highlight {
+  background-color: #ffeeba;
+  border-left: 4px solid #ffc107;
+  transition: background-color 0.5s ease;
+}
+
 #autovelox-list {
   background: white;
   padding: 1rem;
@@ -200,14 +237,33 @@ h1 {
 
 /* Responsive per mobile */
 @media (max-width: 600px) {
-  #search-bar {
+  .map-search-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /*#search-bar,
+  #location-search-bar {
     flex-direction: column;
     align-items: center;
   }
 
   #search-bar input,
-  #search-bar button {
+  #search-bar button,
+  #location-search-bar input,
+  #location-search-bar button {
     width: 100%;
+  }*/
+
+  #search-bar,
+  #location-search-bar {
+    width: 45vw;
+    justify-content: center;
+  }
+
+  #search-bar input,
+  #location-search-bar input {
+    flex: 1;
   }
 
   #map {

@@ -14,9 +14,17 @@
   <div class="main-content">
     <div class="map-wrapper">
       <div id="map">
-        <div id="search-bar">
-          <input type="number" id="searchId" placeholder="Inserisci ID autovelox..." />
-          <button id="searchButton">🔍</button>
+        <div class="map-search-wrapper">
+          <div id="location-search-bar">
+            <input type="text" id="locationInput" placeholder="Cerca una località..." />
+            <button id="locationSearchBtn">Cerca</button>
+            <ul id="locationSuggestions" class="suggestions-list"></ul>
+          </div>
+          
+          <div id="search-bar">
+            <input type="number" id="searchId" placeholder="Inserisci ID autovelox..." />
+            <button id="searchButton">Cerca</button>
+          </div>
         </div>
       </div>
     </div> 
@@ -24,7 +32,7 @@
     <div class="list-wrapper">
       <div id="autovelox-list">
         <h2>Lista autovelox</h2>
-        <button id="addAutoveloxBtn">➕ Aggiungi autovelox</button>
+        <button id="addAutoveloxBtn">Aggiungi autovelox</button>
           <div id="autoveloxForm" class="hidden">
             <form id="newAutoveloxForm">
               <label>Latitudine:
@@ -54,6 +62,7 @@
   <script src="js/form.js"></script>
   <script src="js/search.js"></script>
   <script src="js/crud.js"></script>
+
   
 </body>
 </html>

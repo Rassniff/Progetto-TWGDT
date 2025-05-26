@@ -26,3 +26,4 @@ Frontend
 *Aggiornamento dinamico della mappa dopo l'inserimento di un nuovo autovelox aggiornando anche i marker
 *Ridimensionamento delle barre di ricerca specialmente quella per località
 *Revisitazione grafica
+*Aggiunta delle icone personalizzate per autovelox(3 immagini in base alla velocità dell'autovelox)

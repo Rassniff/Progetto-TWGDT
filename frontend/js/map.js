@@ -22,6 +22,10 @@ function initMap() {
 function loadAutoveloxData() {
     
   markers.clearLayers();
+  if (tempMarker) {
+    map.removeLayer(tempMarker);
+    tempMarker = null;
+  }
 
   fetch('/api/autovelox')
     .then(res => res.json())
@@ -30,21 +34,45 @@ function loadAutoveloxData() {
         const marker = createAutoveloxMarker(v);
         markers.addLayer(marker);
       });
-      map.addLayer(markers);
+      if (!map.hasLayer(markers)) {
+        map.addLayer(markers);
+      }
     })
     .catch(err => console.error('Errore nel caricamento dei dati:', err));
 }
 
 // Crea un marker con popup per un autovelox
 function createAutoveloxMarker(v) {
-  return L.marker([v.lat, v.lon])
-    .bindPopup(`
+  let iconUrl;
+  if (v.maxspeed == null || isNaN(v.maxspeed)) {
+    iconUrl = 'images/autovelox_nero_filled.png'; // icona nera per valori null o non validi
+  } else if (v.maxspeed <= 50) {
+    iconUrl = 'images/autovelox_verde_filled.png';
+  } else if (v.maxspeed <= 90) {
+    iconUrl = 'images/autovelox_arancione_filled.png';
+  } else {
+    iconUrl = 'images/autovelox_rosso_filled.png';
+  }
+  
+  const autoveloxIcon = L.icon({
+    iconUrl: iconUrl, 
+    iconSize: [32, 32],           // dimensione icona
+    iconAnchor: [16, 32],         // punto di ancoraggio (base dell'icona)
+    popupAnchor: [0, -32]         // dove si apre il popup rispetto all'icona
+  });
+  
+  const marker = L.marker([v.lat, v.lon], {icon: autoveloxIcon,})
+  marker.autoveloxId = v.id;
+
+    marker.bindPopup(`
       <b>Velocità max: ${v.maxspeed} km/h</b><br>
       ID: ${v.id}
     `)
     .on('click', () => {
       highlightAutoveloxInList(v.id); // Evidenzio nella lista
     });
+    
+  return marker;
 }
 
 // Abilita il click sulla mappa per aggiungere un autovelox temporaneo

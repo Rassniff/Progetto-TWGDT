@@ -26,6 +26,32 @@ function loadAutoveloxList() {
         });
   
         attachActionHandlers();
+
+        // --- AGGIUNGI QUESTO BLOCCO ---
+        document.querySelectorAll('.autovelox-item').forEach(item => {
+          item.addEventListener('click', function(e) {
+            // Evita il click sui bottoni modifica/elimina
+            if (e.target.closest('.autovelox-actions')) return;
+            const id = this.getAttribute('data-id');
+            // Evidenzia l'elemento cliccato
+            document.querySelectorAll('.autovelox-item').forEach(el => el.classList.remove('highlight'));
+            this.classList.add('highlight');
+            setTimeout(() => {
+              this.classList.remove('highlight');
+            }, 1200);
+            
+            // Usa markers e map definiti globalmente in map.js
+            markers.eachLayer(marker => {
+              if (String(marker.autoveloxId) === String(id)) {
+                map.setView(marker.getLatLng(), 17, { animate: true });
+                setTimeout(() => {
+                  marker.openPopup();
+                }, 400);
+              }
+            });
+          });
+        });
+        // --- FINE BLOCCO ---
       });
 }
 

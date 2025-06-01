@@ -33,7 +33,14 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   const data = readData();
   const nuovo = req.body;
-  nuovo.id = Date.now(); // ID temporaneo unico
+  
+  // Trova l'ID massimo esistente
+  let maxId = 0;
+  if (data.length > 0) {
+    maxId = Math.max(...data.map(v => Number(v.id) || 0));
+  }
+  nuovo.id = maxId + 1;
+  
   data.push(nuovo);
   writeData(data);
   res.status(201).json(nuovo);

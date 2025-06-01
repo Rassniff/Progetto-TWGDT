@@ -8,12 +8,22 @@ searchButton.addEventListener('click', () => {
   fetch(`/api/autovelox/${id}`)
     .then(res => res.json())
     .then(data => {
-      const marker = L.marker([data.lat, data.lon])
-        .addTo(map)
-        .bindPopup(`<b>Velocità max: ${data.maxspeed}km/h</b><br>ID: ${data.id}`)
-        .openPopup();
-      map.setView([data.lat, data.lon], 14);
-      highlightAutoveloxInList(data.id); // Evidenzio nella lista
+      let found = false;
+      markers.eachLayer(marker => {
+        // Confronta l'ID 
+        if (marker.autoveloxId == data.id) { // confronto esatto!
+          map.setView(marker.getLatLng(), 17, { animate: true });
+          setTimeout(() => {
+            marker.openPopup();
+          }, 400); // 400ms di solito bastano
+          found = true;
+        }
+      });
+      if (!found) {
+        alert('Autovelox non trovato sulla mappa!');
+      } else {
+        highlightAutoveloxInList(data.id); // Evidenzio nella lista
+      }
     })
     .catch(err => {
       console.error(err);

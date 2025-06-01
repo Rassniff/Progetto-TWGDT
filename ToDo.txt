@@ -17,13 +17,16 @@ Frontend
     +Aggiunta dei suggerimenti in fase di ricerca di una località(Città/Via) utilizzando l'api di OpenStreetMap (nominatim)
     +Ottimizzazione delle richieste di suggerimento utilizzando debounce(tecnica per evitare che una funzione venga eseguita troppe volte in sequenza mentre l’utente digita o interagisce rapidamente)
      e limitando solo sull'Italia le richiesta a nominatim attraverso parametri specifici come limit/countrycode 
+    +Aggiornamento dinamico della mappa dopo l'inserimento di un nuovo autovelox aggiornando anche i marker
+    +Aggiunta delle icone personalizzate per autovelox(3 immagini in base alla velocità dell'autovelox) 0-50 (verde) 50-90(arancione) 90-130+(rosso)
+    +Aggiunta la funzionalità che cliccando su un elemento della lista degli autovelox la mappa zoomi e apra il popup
+    +Aggiunta di un highlight quando clicco su un autovelox nella lista
+    +Ridimensionamento delle barre di ricerca specialmente quella per id
 
 
 
 
+*Sistema di conversione da indirizzo a coordinate(lat/lon) --inutile?
+*Rivisitazione grafica
+***Funzionalità di spostare un autovelox, spostando l'icona 
 
-*Sistema di conversione da indirizzo a coordinate(lat/lon)
-*Aggiornamento dinamico della mappa dopo l'inserimento di un nuovo autovelox aggiornando anche i marker
-*Ridimensionamento delle barre di ricerca specialmente quella per località
-*Revisitazione grafica
-*Aggiunta delle icone personalizzate per autovelox(3 immagini in base alla velocità dell'autovelox)

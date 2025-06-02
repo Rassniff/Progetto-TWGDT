@@ -1,4 +1,3 @@
-/* Reset base */
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +11,6 @@ body {
   padding: 1rem;
 }
 
-/* Titolo */
 h1 {
   text-align: center;
   margin-bottom: 1rem;
@@ -20,7 +18,6 @@ h1 {
   font-size: 2.2rem;
 }
 
-/* Contenitore principale responsivo */
 .main-content {
   display: flex;
   flex-direction: column;
@@ -30,23 +27,20 @@ h1 {
   padding: 1rem;
 }
 
-/* Affiancato su desktop */
 @media (min-width: 768px) {
   .main-content {
     flex-direction: row;
     align-items: flex-start;
   }
   .map-wrapper {
-    flex: 3; /* Più grande */
+    flex: 3; 
   }
 
   .list-wrapper {
-    flex: 1; /* Più stretta */
+    flex: 1; 
   }
 }
 
-
-/* Mappa */
 #map {
   height: 70vh;
   width: 100%;
@@ -67,8 +61,6 @@ h1 {
   z-index: 1000;
 }
 
-
-/* Barra di ricerca */
 #search-bar,
 #location-search-bar {
   background-color: rgba(255, 255, 255, 0.95);
@@ -96,24 +88,28 @@ h1 {
   color: white;
   border: none;
   padding: 6px 12px;
-  border-radius: 4px;
+  border-radius: 5px;
   cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: background 0.2s, transform 0.1s;
+  
 }
 
 #search-bar button:hover,
 #location-search-bar button:hover {
   background-color: #0056b3;
+  transform: translateY(-2px) scale(1.04);
 }
 
-/* Ridimensiona solo la barra di ricerca per ID */
 #search-bar {
-  width: 180px;      /* Larghezza totale della barra */
+  width: 180px;      
   min-width: 140px;
   max-width: 100%;
 }
 
 #search-bar input#searchId {
-  width: 90px;       /* Larghezza dell'input */
+  width: 90px;       
   min-width: 60px;
   max-width: 100%;
 }
@@ -143,7 +139,7 @@ h1 {
 .suggestion-item:hover {
   background-color: #f0f0f0;
 }
-/* Lista autovelox */
+
 .autovelox-item.highlight {
   background-color: #ffeeba;
   border-left: 4px solid #ffc107;
@@ -157,8 +153,6 @@ h1 {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   height: 70vh;
   overflow-y: auto;
-  /*scrollbar-width: thin;
-  scrollbar-color: #007bff #f0f4fa;*/
   padding-right: 1.5rem;
 }
 
@@ -167,14 +161,13 @@ h1 {
   margin-bottom: 1.5rem;
   position: sticky;
   top: 0;
-  background: rgba(255,255,255,0.97); /* Sfondo opaco */
+  background: rgba(255,255,255,0.97); 
   z-index: 2;
   padding: 0.7rem 0.5rem 0.7rem 0.5rem;
   border-bottom: 2px solid #e9f0fa;
   box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
 
-/* Scrollbar personalizzata */
 #autovelox-list::-webkit-scrollbar {
   width: 18px;
   background: #f0f4fa;
@@ -192,7 +185,6 @@ h1 {
   background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
 }
 
-/* Singoli elementi */
 #autoveloxContainer {
   display: flex;
   flex-direction: column;
@@ -244,7 +236,6 @@ h1 {
   background-color: #d90429;
 }
 
-/*Bottone e form di aggiunta di un autovelox*/
 .autovelox-header {
   display: flex;
   justify-content: space-between;
@@ -260,10 +251,14 @@ h1 {
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 0.5rem;
+  transition: background 0.2s, transform 0.1s;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 #addAutoveloxBtn:hover {
   background-color: #218838;
+  transform: translateY(-2px) scale(1.04);
 }
 
 #autoveloxForm {
@@ -272,7 +267,7 @@ h1 {
   border-radius: 6px;
   margin-top: 0.5rem;
   margin-bottom: 1rem;
-  display: none; /* nascosto di default */
+  display: none;
 }
 
 #autoveloxForm label {
@@ -289,7 +284,6 @@ h1 {
   border: 1px solid #ccc;
 }
 
-/* Bottone del form di inserimento autovelox */
 #autoveloxForm button[type="submit"] {
   background-color: #007bff;
   color: #fff;
@@ -309,24 +303,6 @@ h1 {
   transform: translateY(-2px) scale(1.04);
 }
 
-/*
-.spinner {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  border: 2px solid #ccc;
-  border-top: 2px solid #333;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-  vertical-align: middle;
-  margin-right: 6px;
-}
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-*/
-
-/* Aggiungi nel tuo file CSS */
 .map-legend {
   margin-top: 10px;
   padding: 8px 12px;
@@ -339,26 +315,97 @@ h1 {
   font-size: 16px;
 }
 
-/* Responsive per mobile */
+#autoveloxFilters {
+  background: #f4f8ff;
+  padding: 1rem 1.2rem;
+  border-radius: 8px;
+  margin-bottom: 1.2rem;
+  margin-top: 2rem;
+  box-shadow: 0 1px 6px rgba(0,123,255,0.07);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: flex-end;
+  
+}
+
+#autoveloxFilters label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  color: #004080;
+  gap: 0.3rem;
+}
+
+#autoveloxFilters input[type="number"] {
+  padding: 6px 10px;
+  border: 1px solid #b3d1ff;
+  border-radius: 5px;
+  font-size: 1rem;
+  background: #fff;
+  width: 120px;
+}
+
+#autoveloxFilters input[type="checkbox"] {
+  margin-top: 7px;
+  accent-color: #007bff;
+  width: 18px;
+  height: 18px;
+}
+
+#autoveloxFilters button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  margin-top: 0.5rem;
+}
+
+#autoveloxFilters button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px) scale(1.04);
+}
+
+.stats-link {
+  display: inline-block;
+  padding: 8px 18px;           
+  background: linear-gradient(90deg, #28a745 60%, #218838 100%);
+  color: #fff;
+  border-radius: 5px;          
+  font-size: 1rem;             
+  font-weight: 500;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.08);
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  margin-top: 0.5rem;          
+  margin-bottom: 0;            
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+.stats-link:hover, .main-link:focus {
+  background: linear-gradient(90deg, #218838 60%, #28a745 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 16px rgba(0,123,255,0.13);
+  text-decoration: none;
+}
+
+
 @media (max-width: 600px) {
   .map-search-wrapper {
     flex-direction: column;
     align-items: center;
   }
   
-  /*#search-bar,
-  #location-search-bar {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #search-bar input,
-  #search-bar button,
-  #location-search-bar input,
-  #location-search-bar button {
-    width: 100%;
-  }*/
-
   #search-bar,
   #location-search-bar {
     width: 45vw;
@@ -377,5 +424,15 @@ h1 {
   #autovelox-list {
     height: auto;
     max-height: 50vh;
+  }
+
+  #autoveloxFilters {
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: stretch;
+  }
+  #autoveloxFilters label,
+  #autoveloxFilters button {
+    width: 100%;
   }
 }

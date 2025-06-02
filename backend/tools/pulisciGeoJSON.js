@@ -9,7 +9,7 @@ const autovelox = geojson.features.map((feature, index) => {
   const props = feature.properties || {};
 
   return {
-    id: props.id || index + 1,                // fallback in caso manchi id
+    id: props.id || index + 1,               
     lat: lat,
     lon: lon,
     direction: props.direction || null,
@@ -19,4 +19,4 @@ const autovelox = geojson.features.map((feature, index) => {
 
 // Salva il nuovo file JSON semplificato
 fs.writeFileSync('./data/autovelox.json', JSON.stringify(autovelox, null, 2));
-console.log(`✅ File autovelox_con_maxspeed.json creato con ${autovelox.length} elementi.`);
+console.log(`File autovelox_con_maxspeed.json creato con ${autovelox.length} elementi.`);

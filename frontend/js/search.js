@@ -1,7 +1,12 @@
-// Gestione ricerca autovelox per ID
-const searchButton = document.getElementById('searchButton');
+// Ricerca per ID degli autovelox
+function initSearchById() {
+  const searchButton = document.getElementById('searchButton');
+  if (!searchButton) return;
+  searchButton.addEventListener('click', handleSearchById);
+}
 
-searchButton.addEventListener('click', () => {
+// Gestione della ricerca per ID
+function handleSearchById() {
   const id = document.getElementById('searchId').value.trim();
   if (id === '') return;
 
@@ -10,23 +15,24 @@ searchButton.addEventListener('click', () => {
     .then(data => {
       let found = false;
       markers.eachLayer(marker => {
-        // Confronta l'ID 
-        if (marker.autoveloxId == data.id) { // confronto esatto!
+        if (marker.autoveloxId == data.id) {
           map.setView(marker.getLatLng(), 17, { animate: true });
           setTimeout(() => {
             marker.openPopup();
-          }, 400); // 400ms di solito bastano
+          }, 400);
           found = true;
         }
       });
       if (!found) {
         alert('Autovelox non trovato sulla mappa!');
       } else {
-        highlightAutoveloxInList(data.id); // Evidenzio nella lista
+        highlightAutoveloxInList(data.id);
       }
     })
     .catch(err => {
       console.error(err);
       alert('Autovelox non trovato!');
     });
-});
+}
+
+initSearchById();

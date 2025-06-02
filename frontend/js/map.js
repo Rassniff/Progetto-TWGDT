@@ -1,11 +1,69 @@
-const map = initMap();
-const markers = L.markerClusterGroup();
-let tempMarker = null;
+const map = initMap(); // Inizializza la mappa
+const markers = L.markerClusterGroup(); // Gruppo di marker per clustering
+let tempMarker = null; // Marker temporaneo per aggiunta autovelox
 let debounceTimer; // Timer debounce
 
-// Inizializzazione 
-loadAutoveloxData();
-enableClickToAddMarker();
+// Inizializzazione principale
+function initMapApp(){
+  loadAutoveloxData();
+  enableClickToAddMarker();
+  initLocationSearch();
+}
+
+// Eventi e logica per la ricerca di località
+function initLocationSearch() {
+  const locationSearchBtn = document.getElementById("locationSearchBtn");
+  const locationInput = document.getElementById("locationInput");
+  const suggestionsList = document.getElementById("locationSuggestions");
+
+  locationSearchBtn.addEventListener("click", () => {
+    const query = locationInput.value.trim();
+    if (query) searchLocation(query);
+  });
+
+  locationInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      const query = locationInput.value.trim();
+      if (query) searchLocation(query);
+    }
+  });
+
+  locationInput.addEventListener("input", () => {
+    const query = locationInput.value.trim();
+    clearTimeout(debounceTimer);
+
+    if (query.length < 3) {
+      suggestionsList.innerHTML = "";
+      return;
+    }
+
+    debounceTimer = setTimeout(() => {
+      fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=3&addressdetails=1&countrycodes=it`)
+        .then(res => res.json())
+        .then(results => {
+          suggestionsList.innerHTML = "";
+          results.forEach(result => {
+            const li = document.createElement("li");
+            li.textContent = result.display_name;
+            li.classList.add("suggestion-item");
+            li.addEventListener("click", () => {
+              locationInput.value = result.display_name;
+              suggestionsList.innerHTML = "";
+              map.flyTo([parseFloat(result.lat), parseFloat(result.lon)], 15, {
+                animate: true,
+                duration: 1.5
+              });
+            });
+            suggestionsList.appendChild(li);
+          });
+        });
+    }, 400);
+  });
+
+  locationInput.addEventListener("blur", () => {
+    setTimeout(() => (suggestionsList.innerHTML = ""), 100);
+  });
+}
 
 // Inizializza la mappa centrata sull’Italia
 function initMap() {
@@ -45,7 +103,7 @@ function loadAutoveloxData() {
 function createAutoveloxMarker(v) {
   let iconUrl;
   if (v.maxspeed == null || isNaN(v.maxspeed)) {
-    iconUrl = 'images/autovelox_nero_filled.png'; // icona nera per valori null o non validi
+    iconUrl = 'images/autovelox_nero_filled.png'; 
   } else if (v.maxspeed <= 50) {
     iconUrl = 'images/autovelox_verde_filled.png';
   } else if (v.maxspeed <= 90) {
@@ -56,12 +114,12 @@ function createAutoveloxMarker(v) {
   
   const autoveloxIcon = L.icon({
     iconUrl: iconUrl, 
-    iconSize: [32, 32],           // dimensione icona
-    iconAnchor: [16, 32],         // punto di ancoraggio (base dell'icona)
-    popupAnchor: [0, -32]         // dove si apre il popup rispetto all'icona
+    iconSize: [32, 32],           
+    iconAnchor: [16, 32],         
+    popupAnchor: [0, -32]         
   });
   
-  const marker = L.marker([v.lat, v.lon], {icon: autoveloxIcon,})
+  const marker = L.marker([v.lat, v.lon], {icon: autoveloxIcon, draggable: true});
   marker.autoveloxId = v.id;
 
     marker.bindPopup(`
@@ -69,10 +127,54 @@ function createAutoveloxMarker(v) {
       ID: ${v.id}
     `)
     .on('click', () => {
-      highlightAutoveloxInList(v.id); // Evidenzio nella lista
+      highlightAutoveloxInList(v.id);
     });
+  
+  // Gestisci il drop
+  marker.on('dragend', function(e) {
+    const newLatLng = e.target.getLatLng();
+    // Chiedi conferma all'utente
+    if (confirm('Vuoi aggiornare la posizione di questo autovelox?')) {
+      // Chiama il backend per aggiornare la posizione
+      fetch(`/api/autovelox/${v.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          lat: newLatLng.lat,
+          lon: newLatLng.lng
+        })
+      })
+      .then(res => {
+        if (!res.ok) throw new Error('Errore nell\'aggiornamento');
+        return res.json();
+      })
+      .then(() => {
+        alert('Posizione aggiornata!');
+        loadAutoveloxList();
+        loadAutoveloxData();
+      })
+      .catch(() => {
+        alert('Errore nell\'aggiornamento della posizione!');
+        loadAutoveloxData(); // Ripristina la posizione se errore
+      });
+    } else {
+      loadAutoveloxData(); // Ripristina la posizione se annullato
+    }
+  });
     
   return marker;
+}
+
+// Aggiorna la mappa con i dati filtrati degli autovelox
+function updateMapWithFilteredAutovelox(filteredData) {
+  markers.clearLayers();
+  filteredData.forEach(v => {
+    const marker = createAutoveloxMarker(v);
+    markers.addLayer(marker);
+  });
+  if (!map.hasLayer(markers)) {
+    map.addLayer(markers);
+  }
 }
 
 // Abilita il click sulla mappa per aggiungere un autovelox temporaneo
@@ -98,25 +200,6 @@ function updateFormCoordinates(lat, lng) {
   document.getElementById('lonInput').value = lng.toFixed(6);
 }
 
-// Ricerca località sulla mappa senza marker 
-
-// Pulsanti e input
-const locationSearchBtn = document.getElementById("locationSearchBtn");
-const locationInput = document.getElementById("locationInput");
-
-// Eventi
-locationSearchBtn.addEventListener("click", () => {
-  const query = locationInput.value.trim();
-  if (query) searchLocation(query);
-});
-
-locationInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    const query = locationInput.value.trim();
-    if (query) searchLocation(query);
-  }
-});
-
 // Funzione principale di ricerca
 function searchLocation(query) {
   const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=1&countrycodes=it`;
@@ -131,7 +214,6 @@ function searchLocation(query) {
 
       const { lat, lon } = results[0];
 
-      // Zoom e animazione fluida
       map.flyTo([parseFloat(lat), parseFloat(lon)], 15, {
         animate: true,
         duration: 1.5
@@ -142,7 +224,7 @@ function searchLocation(query) {
     });
 }
 
-// Evidenziazione sulla lista
+// Funzione per l'evidenziazione sulla lista
 function highlightAutoveloxInList(id) {
   document.querySelectorAll('.autovelox-item').forEach(el => {
     el.classList.remove('highlight');
@@ -159,51 +241,4 @@ function highlightAutoveloxInList(id) {
   }
 }
 
-// Suggerimento ricerca per località 
-const suggestionsList = document.getElementById("locationSuggestions");
-
-// Mostra i suggerimenti mentre si digita
-locationInput.addEventListener("input", () => {
-  const query = locationInput.value.trim();
-
-  clearTimeout(debounceTimer); // Cancella il timer precedente
-
-  if (query.length < 3) {
-    suggestionsList.innerHTML = "";
-    return;
-  }
-
-  // Aspetta 400ms prima di eseguire la richiesta
-  debounceTimer = setTimeout(() => {
-    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&limit=3&addressdetails=1&countrycodes=it`)
-      .then(res => res.json())
-      .then(results => {
-        suggestionsList.innerHTML = "";
-
-        results.forEach(result => {
-          const li = document.createElement("li");
-          li.textContent = result.display_name;
-          li.classList.add("suggestion-item");
-
-          li.addEventListener("click", () => {
-            locationInput.value = result.display_name;
-            suggestionsList.innerHTML = "";
-
-            map.flyTo([parseFloat(result.lat), parseFloat(result.lon)], 15, {
-              animate: true,
-              duration: 1.5
-            });
-          });
-
-          suggestionsList.appendChild(li);
-        });
-      });
-  }, 400); // 400ms debounce
-});
-
-
-// Chiudi suggerimenti quando perdi il focus
-locationInput.addEventListener("blur", () => {
-  setTimeout(() => (suggestionsList.innerHTML = ""), 100); // timeout per consentire click
-});
-
+initMapApp();

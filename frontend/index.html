@@ -14,13 +14,13 @@
   <div class="main-content">
     <div class="map-wrapper">
       <div id="map">
+        <!-- Barre di ricerca -->
         <div class="map-search-wrapper">
           <div id="location-search-bar">
             <input type="text" id="locationInput" placeholder="Cerca una località..." />
             <button id="locationSearchBtn">Cerca</button>
             <ul id="locationSuggestions" class="suggestions-list"></ul>
           </div>
-          
           <div id="search-bar">
             <input type="number" id="searchId" placeholder="ID velox..." />
             <button id="searchButton">Cerca</button>
@@ -28,15 +28,34 @@
         </div>
       </div>
       <div id="legend" class="map-legend">
+        <!-- Immagini -->
         <span><img src="images/autovelox_nero_filled.png" alt="Nero" style="width:24px;vertical-align:middle;"> No data</span>
         <span><img src="images/autovelox_verde_filled.png" alt="Verde" style="width:24px;vertical-align:middle;"> 0-50 km/h</span>
         <span><img src="images/autovelox_arancione_filled.png" alt="Arancione" style="width:24px;vertical-align:middle;"> 51-90 km/h</span>
         <span><img src="images/autovelox_rosso_filled.png" alt="Rosso" style="width:24px;vertical-align:middle;"> 91-130+ km/h</span>
       </div>
+      <!-- Filtro avanzato -->
+      <div id="autoveloxFilters">
+        <label>
+          Velocità minima:
+          <input type="number" id="filterMinSpeed" placeholder="es. 50">
+        </label>
+        <label>
+          Velocità massima:
+          <input type="number" id="filterMaxSpeed" placeholder="es. 130">
+        </label>
+        <label style="flex-direction: row; align-items: center; gap: 0.5rem;">
+          <input type="checkbox" id="filterNoSpeed">
+          Solo senza velocità
+        </label>
+        <button id="applyFilters">Applica filtri</button>
+        <button id="resetFilters">Reset filtri</button>
+        <a href="stats.html" class="stats-link">Vai alle statistiche</a>
+      </div>
     </div> 
-    
     <div class="list-wrapper">
       <div id="autovelox-list">
+        <!-- Lista degli autovelox -->
         <h2>Lista autovelox</h2>
         <button id="addAutoveloxBtn">Aggiungi autovelox</button>
           <div id="autoveloxForm" class="hidden">

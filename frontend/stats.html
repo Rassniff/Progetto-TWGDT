@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Statistiche Autovelox</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style_stats.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Statistiche -->
+  <h1>Statistiche Autovelox</h1>
+  <div class="stats-container">
+        <div class="stats-summary">
+            <div><b>Totale autovelox:</b> <span id="totalVelox">...</span></div>
+            <div><b>Media velocità max:</b> <span id="avgSpeed">...</span> km/h</div>
+        </div>
+        <div class="stats-charts">
+            <!-- Diagrammi -->
+            <div class="chart-block">
+                <h3>Distribuzione per fascia di velocità</h3>
+                <canvas id="speedBarChart" width="400" height="300"></canvas>
+            </div>
+            <div class="chart-block">
+                <h3>Percentuale per fascia di velocità</h3>
+                <canvas id="speedPieChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+        <div><a href="index.html" class="main-link" style="display:block;margin-top:2rem;">← Torna alla mappa</a></div>
+    </div>
+    
+  <script src="js/stats.js"></script>
+</body>
+</html>

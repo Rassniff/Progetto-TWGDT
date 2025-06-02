@@ -1,7 +1,8 @@
-// Inizializzazione 
-initAutoveloxFormToggle();
-initAutoveloxFormSubmit();
-
+// Inizializza il form per l'aggiunta di un autovelox
+function initAutoveloxForm() {
+  initAutoveloxFormToggle();
+  initAutoveloxFormSubmit();
+}
 
 // Attiva/disattiva la visibilità del form
 function initAutoveloxFormToggle() {
@@ -14,7 +15,7 @@ function initAutoveloxFormToggle() {
     const visible = form.style.display === "block";
     form.style.display = visible ? "none" : "block";
     if (!visible) {
-      resetAutoveloxForm(); // <--- aggiungi questa riga
+      resetAutoveloxForm();
     }
   });
 }
@@ -31,24 +32,16 @@ function initAutoveloxFormSubmit() {
     const formData = new FormData(e.target);
     const newAutovelox = getAutoveloxDataFromForm(formData);
 
-    // Mostra spinner
-    //showFormMessage("Invio in corso...", "loading");
-
     sendNewAutoveloxToBackend(newAutovelox)
       .then(() => {
         alert("Autovelox aggiunto con successo!");
-        //location.reload(); // Si può sostituire con un refresh dinamico della mappa/lista
-        //showFormMessage("Autovelox aggiunto con successo!", "success");
         loadAutoveloxList();
         loadAutoveloxData();
-        // Nascondi il form se vuoi
         document.getElementById("autoveloxForm").style.display = "none";
-        //resetAutoveloxForm();
       })
       .catch((err) => {
         console.error("Errore:", err);
         alert("Errore nell'aggiunta dell'autovelox.");
-        //showFormMessage("Errore nell'aggiunta dell'autovelox.", "error");
       });
   });
 }
@@ -78,23 +71,8 @@ function sendNewAutoveloxToBackend(data) {
 function resetAutoveloxForm() {
   const form = document.getElementById("newAutoveloxForm");
   if (form) form.reset();
-  // Se usi input con id specifici:
   if (document.getElementById("latInput")) document.getElementById("latInput").value = "";
   if (document.getElementById("lonInput")) document.getElementById("lonInput").value = "";
 }
 
-// Mostra messaggi sotto il form
-/*function showFormMessage(msg, type) {
-  let el = document.getElementById("formMessage");
-  if (!el) {
-    el = document.createElement("div");
-    el.id = "formMessage";
-    document.getElementById("autoveloxForm").appendChild(el);
-  }
-  el.textContent = msg;
-  el.style.color = type === "error" ? "red" : type === "success" ? "green" : "black";
-  el.style.marginTop = "10px";
-  if (type === "loading") {
-    el.innerHTML = `<span class="spinner"></span> ${msg}`;
-  }
-}*/
+initAutoveloxForm();

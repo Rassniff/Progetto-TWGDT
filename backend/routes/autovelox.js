@@ -1,8 +1,10 @@
 const express = require('express');
 const fs = require('fs');
 
+// Inizializza il router Express
 const router = express.Router();
 
+// Percorso del file JSON che contiene i dati degli autovelox
 const filePath = './data/autovelox.json';
 
 // Leggi i dati dal file JSON
@@ -73,4 +75,5 @@ router.delete('/:id', (req, res) => {
   }
 });
 
+// Esporta il router per l'uso in altri moduli
 module.exports = router;

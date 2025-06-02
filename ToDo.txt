@@ -22,11 +22,9 @@ Frontend
     +Aggiunta la funzionalità che cliccando su un elemento della lista degli autovelox la mappa zoomi e apra il popup
     +Aggiunta di un highlight quando clicco su un autovelox nella lista
     +Ridimensionamento delle barre di ricerca specialmente quella per id
+    +Funzionalità drag and drop per spostare un autovelox con aggiornamento lato backend
 
-
-
-
-*Sistema di conversione da indirizzo a coordinate(lat/lon) --inutile?
-*Rivisitazione grafica
-***Funzionalità di spostare un autovelox, spostando l'icona 
+    +Stats --> Aggiunta di un grafico a torta e un grafico a barre per visualizzare le stats degli autovelox
+               Aggiunta file di stile
+ 
 

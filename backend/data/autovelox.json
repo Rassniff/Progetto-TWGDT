@@ -27829,7 +27829,7 @@
     "lat": 44.0488573,
     "lon": 12.5882158,
     "direction": null,
-    "maxspeed": "50"
+    "maxspeed": 50
   },
   {
     "id": 3977,
@@ -32341,15 +32341,23 @@
   },
   {
     "id": 4621,
-    "lat": 45.4241534,
-    "lon": 11.1353637,
-    "direction": "320",
+    "lat": 44.043301,
+    "lon": 12.568644,
+    "direction": null,
     "maxspeed": "50"
   },
   {
-    "lat": 44.04368,
-    "lon": 12.568145,
-    "maxspeed": 50,
-    "id": 4622
+    "id": 4622,
+    "lat": 44.065166,
+    "lon": 12.550029,
+    "direction": null,
+    "maxspeed": "30"
+  },
+  {
+    "id": 4623,
+    "lat": 44.060945,
+    "lon": 12.549847,
+    "direction": null,
+    "maxspeed": "0"
   }
 ]

@@ -41,11 +41,20 @@ router.post('/', (req, res) => {
   if (data.length > 0) {
     maxId = Math.max(...data.map(v => Number(v.id) || 0));
   }
-  nuovo.id = maxId + 1;
+
+  const nuovoAutovelox = {
+    id: maxId + 1,
+    lat: Number(nuovo.lat),
+    lon: Number(nuovo.lon),
+    direction: nuovo.direction ?? null,
+    maxspeed: nuovo.maxspeed ?? null
+  };
+
+  //nuovo.id = maxId + 1;
   
-  data.push(nuovo);
+  data.push(nuovoAutovelox);
   writeData(data);
-  res.status(201).json(nuovo);
+  res.status(201).json(nuovoAutovelox);
 });
 
 // PUT /api/autovelox/:id - Modifica autovelox
@@ -53,7 +62,15 @@ router.put('/:id', (req, res) => {
   const data = readData();
   const index = data.findIndex(v => String(v.id) === req.params.id);
   if (index !== -1) {
-    const aggiornato = { ...data[index], ...req.body, id: data[index].id };
+    //const aggiornato = { ...data[index], ...req.body, id: data[index].id };
+    const vecchio = data[index];
+    const aggiornato = {
+      id: vecchio.id,
+      lat: req.body.lat !== undefined ? Number(req.body.lat) : vecchio.lat,
+      lon: req.body.lon !== undefined ? Number(req.body.lon) : vecchio.lon,
+      direction: req.body.direction !== undefined ? req.body.direction : vecchio.direction,
+      maxspeed: req.body.maxspeed !== undefined ? req.body.maxspeed : vecchio.maxspeed
+    };
     data[index] = aggiornato;
     writeData(data);
     res.json(aggiornato);

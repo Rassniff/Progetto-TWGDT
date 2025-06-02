@@ -36,7 +36,7 @@ function initAutoveloxFormSubmit() {
       .then(() => {
         alert("Autovelox aggiunto con successo!");
         loadAutoveloxList();
-        loadAutoveloxData();
+        //loadAutoveloxData();
         document.getElementById("autoveloxForm").style.display = "none";
       })
       .catch((err) => {
@@ -51,7 +51,8 @@ function getAutoveloxDataFromForm(formData) {
   return {
     lat: parseFloat(formData.get("lat")),
     lon: parseFloat(formData.get("lon")),
-    maxspeed: parseInt(formData.get("maxspeed")),
+    direction: null,
+    maxspeed: formData.get("maxspeed"),
   };
 }
 

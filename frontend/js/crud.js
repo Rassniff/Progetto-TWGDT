@@ -116,7 +116,7 @@ function attachListItemHandlers() {
   });
 }
 
-// Aggiunge i gestori di eventi per le azioni sugli autovelox (eliminazione, modifica velocità)
+// Aggiunge i gestori di eventi per le azioni sugli autovelox DELETE e PUT (eliminazione, modifica velocità)
 function attachActionHandlers() {
   //Eliminazione autovelox
   document.querySelectorAll('.delete').forEach(btn => {
@@ -126,7 +126,7 @@ function attachActionHandlers() {
         fetch(`/api/autovelox/${id}`, { method: 'DELETE' })
           .then(() => {
             loadAutoveloxList();
-            loadAutoveloxData();
+            //loadAutoveloxData();
             alert('Autovelox eliminato!');
           })
           .catch(err => {
@@ -149,11 +149,11 @@ function attachActionHandlers() {
       fetch(`/api/autovelox/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ maxspeed: parseInt(newSpeed) })
+        body: JSON.stringify({ maxspeed: newSpeed })
       })
       .then(() => {
         loadAutoveloxList();
-        loadAutoveloxData();
+        //loadAutoveloxData();
         alert('Autovelox aggiornato!');
       });
     });

@@ -168,6 +168,13 @@ function createAutoveloxMarker(v) {
 // Aggiorna la mappa con i dati filtrati degli autovelox
 function updateMapWithFilteredAutovelox(filteredData) {
   markers.clearLayers();
+
+  // Rimuovi il marker temporaneo se presente
+  if (tempMarker && map.hasLayer(tempMarker)) {
+    map.removeLayer(tempMarker);
+    tempMarker = null;
+  }
+
   filteredData.forEach(v => {
     const marker = createAutoveloxMarker(v);
     markers.addLayer(marker);

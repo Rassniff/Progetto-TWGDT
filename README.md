@@ -39,16 +39,16 @@ L'applicazione è sviluppata con Node.js (Express) per il backend e HTML, CSS e 
     │   ├── style_stats.css              # Stili per la pagina delle statistiche
     │   ├── js/
     │   │   ├── crud.js                  # Funzioni per chiamate API (C.R.U.D.)
-    │   │   ├── form.js                  # Gestione del form per aggiunta/modifica
+    │   │   ├── form.js                  # Gestione del form per aggiunta
     │   │   ├── map.js                   # Inizializzazione mappa e marker
-    │   │   ├── search.js                # Ricerca per ID / maxspeed / range
+    │   │   ├── search.js                # Ricerca per ID / località
     │   │   └── stats.js                 # Logica per generare statistiche
     │   └── images/                      # Immagini
     │
     ├── relazione/
     │   └── relazione.pdf                # Relazione tecnica del progetto
     │
-    ├── .gitkeep                         # Per mantenere la cartella `images/` vuota nel repo
+    ├── .gitkeep                         
     └── README.md                        # Documentazione del progetto (da completare)
 
 ---
@@ -104,7 +104,8 @@ Il backend espone le seguenti API RESTful per la gestione degli autovelox. Tutte
 
 ## 👤 Autore
 
-Andrii Ursu
+Andrii Ursu 
+
 Tecnologie Web e Gestione dei Dati Territoriali
 A.A. 2024/2025
 

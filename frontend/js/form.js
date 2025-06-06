@@ -16,6 +16,11 @@ function initAutoveloxFormToggle() {
     form.style.display = visible ? "none" : "block";
     if (!visible) {
       resetAutoveloxForm();
+    } else {
+      if(tempMarker && map.hasLayer(tempMarker)){
+        map.removeLayer(tempMarker);
+        tempMarker = null;
+      }
     }
   });
 }

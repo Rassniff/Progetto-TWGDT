@@ -1,4 +1,3 @@
-
 let allAutovelox = [];
 
 // Inizializza il CRUD per gli autovelox

@@ -151,7 +151,7 @@ function createAutoveloxMarker(v) {
       .then(() => {
         alert('Posizione aggiornata!');
         loadAutoveloxList();
-        loadAutoveloxData();
+        //loadAutoveloxData();
       })
       .catch(() => {
         alert('Errore nell\'aggiornamento della posizione!');

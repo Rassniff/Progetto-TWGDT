@@ -27,4 +27,5 @@ Frontend
     +Stats --> Aggiunta di un grafico a torta e un grafico a barre per visualizzare le stats degli autovelox
                Aggiunta file di stile
  
+    +Bug marker rimane anche quando chiudo il form e non inserisco l'autovelox
 

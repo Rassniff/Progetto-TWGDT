@@ -109,5 +109,7 @@ Tecnologie Web e Gestione dei Dati Territoriali
 A.A. 2024/2025
 
 ---
+## 📄 Licenza
 
 Questo progetto è realizzato a scopo didattico per uso universitario.
+Open Database License (ODbL) v1.0

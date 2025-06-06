@@ -31,6 +31,29 @@ router.get('/:id', (req, res) => {
   else res.status(404).json({ error: "Autovelox non trovato" });
 });
 
+// GET /api/autovelox/:minId/:maxId - Filtra per intervallo di ID
+router.get('/:minId/:maxId', (req, res) => {
+  const data = readData();
+  const min = Number(req.params.minId);
+  const max = Number(req.params.maxId);
+  
+  if (isNaN(min) || isNaN(max)) {
+    return res.status(400).json({ error: 'ID non validi' });
+  }
+
+  const result = data.filter(v => Number(v.id) >= min && Number(v.id) <= max);
+  res.json(result);
+});
+
+// GET /api/autovelox/maxspeed/:value - Filtra per maxspeed
+router.get('/maxspeed/:value', (req, res) => {
+  const data = readData();
+  const value = String(req.params.value);
+  const result = data.filter(v => String(v.maxspeed) === value);
+  res.json(result);
+});
+
+
 // POST /api/autovelox - Aggiungi nuovo autovelox
 router.post('/', (req, res) => {
   const data = readData();

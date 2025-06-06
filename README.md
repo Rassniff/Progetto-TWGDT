@@ -19,37 +19,37 @@ L'applicazione è sviluppata con Node.js (Express) per il backend e HTML, CSS e 
 
 ## 🧱 Struttura del progetto
 
-Progetto-TWGDT/
-├── backend/
-│   ├── app.js                       # Entry point del backend Express
-│   ├── package.json                 # Configurazione npm
-│   ├── package-lock.json
-│   ├── data/
-│   │   ├── autovelox.json           # File JSON con tutti gli autovelox
-│   │   └── export.geojson           # File originale esportato da Overpass/OSM
-│   ├── routes/
-│   │   └── autovelox.js             # Tutte le API REST per gli autovelox
-│   └── tools/
-│       └── pulisciGeoJSON.js        # Script per convertire GeoJSON in JSON semplificato
-│
-├── frontend/
-│   ├── index.html                   # Pagina principale con mappa e lista
-│   ├── stats.html                   # Pagina per visualizzare statistiche
-│   ├── style.css                    # Stili generali (mappa e lista)
-│   ├── style_stats.css              # Stili per la pagina delle statistiche
-│   ├── js/
-│   │   ├── crud.js                  # Funzioni per chiamate API (C.R.U.D.)
-│   │   ├── form.js                  # Gestione del form per aggiunta/modifica
-│   │   ├── map.js                   # Inizializzazione mappa e marker
-│   │   ├── search.js                # Ricerca per ID / maxspeed / range
-│   │   └── stats.js                 # Logica per generare statistiche
-│   └── images/                      # Immagini
-│
-├── relazione/
-│   └── relazione.pdf                # Relazione tecnica del progetto
-│
-├── .gitkeep                         # Per mantenere la cartella `images/` vuota nel repo
-└── README.md                        # Documentazione del progetto (da completare)
+    Progetto-TWGDT/
+    ├── backend/
+    │   ├── app.js                       # Entry point del backend Express
+    │   ├── package.json                 # Configurazione npm
+    │   ├── package-lock.json
+    │   ├── data/
+    │   │   ├── autovelox.json           # File JSON con tutti gli autovelox
+    │   │   └── export.geojson           # File originale esportato da Overpass/OSM
+    │   ├── routes/
+    │   │   └── autovelox.js             # Tutte le API REST per gli autovelox
+    │   └── tools/
+    │       └── pulisciGeoJSON.js        # Script per convertire GeoJSON in JSON semplificato
+    │
+    ├── frontend/
+    │   ├── index.html                   # Pagina principale con mappa e lista
+    │   ├── stats.html                   # Pagina per visualizzare statistiche
+    │   ├── style.css                    # Stili generali (mappa e lista)
+    │   ├── style_stats.css              # Stili per la pagina delle statistiche
+    │   ├── js/
+    │   │   ├── crud.js                  # Funzioni per chiamate API (C.R.U.D.)
+    │   │   ├── form.js                  # Gestione del form per aggiunta/modifica
+    │   │   ├── map.js                   # Inizializzazione mappa e marker
+    │   │   ├── search.js                # Ricerca per ID / maxspeed / range
+    │   │   └── stats.js                 # Logica per generare statistiche
+    │   └── images/                      # Immagini
+    │
+    ├── relazione/
+    │   └── relazione.pdf                # Relazione tecnica del progetto
+    │
+    ├── .gitkeep                         # Per mantenere la cartella `images/` vuota nel repo
+    └── README.md                        # Documentazione del progetto (da completare)
 
 ---
 
@@ -104,12 +104,13 @@ Il backend espone le seguenti API RESTful per la gestione degli autovelox. Tutte
 
 ## 👤 Autore
 
-[IL TUO NOME E COGNOME]
+Andrii Ursu
 Tecnologie Web e Gestione dei Dati Territoriali
 A.A. 2024/2025
 
 ---
-
 ## 📄 Licenza
 
 Questo progetto è realizzato a scopo didattico per uso universitario.
+
+Open Database License (ODbL) v1.0

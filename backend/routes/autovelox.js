@@ -23,12 +23,12 @@ router.get('/', (req, res) => {
   res.json(data);
 });
 
-// GET /api/autovelox/:id - Uno solo per ID
-router.get('/:id', (req, res) => {
+// GET /api/autovelox/maxspeed/:value - Filtra per maxspeed
+router.get('/maxspeed/:value', (req, res) => {
   const data = readData();
-  const found = data.find(v => String(v.id) === req.params.id);
-  if (found) res.json(found);
-  else res.status(404).json({ error: "Autovelox non trovato" });
+  const value = String(req.params.value);
+  const result = data.filter(v => String(v.maxspeed) === value);
+  res.json(result);
 });
 
 // GET /api/autovelox/:minId/:maxId - Filtra per intervallo di ID
@@ -45,14 +45,13 @@ router.get('/:minId/:maxId', (req, res) => {
   res.json(result);
 });
 
-// GET /api/autovelox/maxspeed/:value - Filtra per maxspeed
-router.get('/maxspeed/:value', (req, res) => {
+// GET /api/autovelox/:id - Uno solo per ID
+router.get('/:id', (req, res) => {
   const data = readData();
-  const value = String(req.params.value);
-  const result = data.filter(v => String(v.maxspeed) === value);
-  res.json(result);
+  const found = data.find(v => String(v.id) === req.params.id);
+  if (found) res.json(found);
+  else res.status(404).json({ error: "Autovelox non trovato" });
 });
-
 
 // POST /api/autovelox - Aggiungi nuovo autovelox
 router.post('/', (req, res) => {

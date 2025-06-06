@@ -1,11 +1,11 @@
-# 🚦 Progetto TWGDT 2024–2025 — Mappa degli Autovelox
+# Progetto TWGDT 2024–2025 — Mappa degli Autovelox
 
 Questo progetto consiste in una web application full-stack che consente la gestione, visualizzazione e modifica di dati relativi agli autovelox in Italia.  
 L'applicazione è sviluppata con Node.js (Express) per il backend e HTML, CSS e JavaScript con Leaflet.js per il frontend.
 
 ---
 
-## 📌 Funzionalità principali
+## Funzionalità principali
 
 - Visualizzazione di tutti gli autovelox su mappa (Leaflet) e lista interattiva
 - Aggiunta di nuovi autovelox cliccando sulla mappa
@@ -17,7 +17,7 @@ L'applicazione è sviluppata con Node.js (Express) per il backend e HTML, CSS e 
 
 ---
 
-## 🧱 Struttura del progetto
+## Struttura del progetto
 
     Progetto-TWGDT/
     ├── backend/
@@ -53,16 +53,16 @@ L'applicazione è sviluppata con Node.js (Express) per il backend e HTML, CSS e 
 
 ---
 
-## 🚀 Avvio del progetto
+## Avvio del progetto
 
-### 🔧 Requisiti
+### Requisiti
 
 Per avviare e utilizzare il progetto sono necessari:
 
 * **[Node.js](https://nodejs.org)** installato sul sistema.
 * Un **browser moderno** per visualizzare il frontend.
 
-### ▶️ Avviare il backend
+### Avviare il backend
 
 1.  Apri il terminale e naviga nella directory `backend`:
     ```bash
@@ -78,7 +78,7 @@ Per avviare e utilizzare il progetto sono necessari:
     ```
     Il backend sarà attivo e in ascolto su `http://localhost:3000`.
 
-### 🌐 Avviare il frontend
+### Avviare il frontend
 
 1.  Apri il file `frontend/index.html` direttamente nel tuo browser.
     * La pagina principale mostrerà la mappa e la lista degli autovelox.
@@ -86,7 +86,7 @@ Per avviare e utilizzare il progetto sono necessari:
 
 ---
 
-### 📡 API REST disponibili
+### API REST disponibili
 
 Il backend espone le seguenti API RESTful per la gestione degli autovelox. Tutte le richieste e risposte avvengono in formato `application/json`.
 
@@ -102,7 +102,7 @@ Il backend espone le seguenti API RESTful per la gestione degli autovelox. Tutte
 
 ---
 
-## 👤 Autore
+## Autore
 
 Andrii Ursu 
 
@@ -110,7 +110,7 @@ Tecnologie Web e Gestione dei Dati Territoriali
 A.A. 2024/2025
 
 ---
-## 📄 Licenza
+## Licenza
 
 Questo progetto è realizzato a scopo didattico per uso universitario.
 

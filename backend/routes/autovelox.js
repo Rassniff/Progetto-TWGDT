@@ -28,6 +28,11 @@ router.get('/maxspeed/:value', (req, res) => {
   const data = readData();
   const value = String(req.params.value);
   const result = data.filter(v => String(v.maxspeed) === value);
+  
+  if (result.length === 0) {
+    return res.status(404).json({ message: `Nessun autovelox trovato con maxspeed ${value}` });
+  }
+  
   res.json(result);
 });
 

@@ -95,7 +95,7 @@ Il backend espone le seguenti API RESTful per la gestione degli autovelox. Tutte
 | `GET`  | `/api/autovelox`             | Restituisce tutti gli autovelox.            |
 | `GET`  | `/api/autovelox/:id`         | Restituisce un autovelox specifico per ID.  |
 | `GET`  | `/api/autovelox/maxspeed/:value` | Filtra gli autovelox per limite di velocità. |
-| `GET`  | `/api/autovelox/range/:min/:max` | Filtra gli autovelox per intervallo di ID.  |
+| `GET`  | `/api/autovelox/:min/:max` | Filtra gli autovelox per intervallo di ID.  |
 | `POST` | `/api/autovelox`             | Aggiunge un nuovo autovelox.                |
 | `PUT`  | `/api/autovelox/:id`         | Modifica un autovelox esistente.            |
 | `DELETE`| `/api/autovelox/:id`         | Elimina un autovelox.                       |
